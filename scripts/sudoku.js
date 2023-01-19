@@ -1,6 +1,10 @@
 var numSelected = null;
 var tileSelected = null;
-
+var lastNumberDict = {
+    "number": -1,
+    "r": -1,
+    "c": -1
+}
 var errors = 0;
 var board = [
     [-1, 1, -1, -1, -1, -1, -1, 9, -1],//1
@@ -29,8 +33,12 @@ function setGame() {
         number.classList.add("number");
         document.getElementById("digits").appendChild(number);
     }
-
+    updateGame();
     // Board 9x9
+
+
+}
+function updateGame() {
     for (let r = 0; r < 9; r++) {
         for (let c = 0; c < 9; c++) {
             let tile = document.createElement("div");
@@ -55,13 +63,10 @@ function setGame() {
                 tile.classList.add("tile");
                 document.getElementById("board").append(tile);
             }
-
-
-
-
         }
     }
 }
+
 function selectNumber() {
     if (numSelected != null) {
         numSelected.classList.remove("number-selected");
@@ -85,10 +90,12 @@ function selectTile() {
         console.log(value);
 
         if (validRow(board, r, c, parseInt(numSelected.id)) && validColumn(board, r, c, parseInt(numSelected.id)) && validBox(board, r, c, value)) {
-            console.log((validColumn(board, r, c, parseInt(numSelected.id))));
-            console.log(board)
             this.innerText = numSelected.id;
             board[r][c] = parseInt(numSelected.id);
+            lastNumberDict['number'] = parseInt(numSelected.id);
+            lastNumberDict['r'] = r;
+            lastNumberDict['c'] = c;
+
 
         }
         else {
@@ -144,4 +151,11 @@ function validBox(board, row, col, value) {
     }
 
     return true;
+}
+function undo() {
+    let r = lastNumberDict['r'];
+    let c = lastNumberDict['c'];
+    console.log("undo clicked");
+    board[lastNumberDict['r']][lastNumberDict['c']] = -1;
+    document.getElementById(r + ":" +c).innerHTML = "";
 }
