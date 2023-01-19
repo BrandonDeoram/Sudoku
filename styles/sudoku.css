@@ -1,4 +1,5 @@
-html,body {
+html,
+body {
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
     margin: 0px 0px 50px 0px;
@@ -14,7 +15,7 @@ hr {
 }
 
 #board {
-    flex-shrink: 1;
+
     width: 450px;
     height: 450px;
     border: 2px solid black;
@@ -41,6 +42,10 @@ hr {
     align-items: center;
 }
 
+.tile:hover {
+    background-color: #f5dd90;
+}
+
 .tile2 {
     width: 48px;
     height: 48px;
@@ -55,6 +60,10 @@ hr {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.tile2:hover {
+    background-color: #f5dd90;
 }
 
 .rowDigits {
@@ -86,6 +95,10 @@ hr {
     justify-content: center;
     align-items: center;
 
+}
+
+.number:hover {
+    background-color: #f2f2f2
 }
 
 .number:nth-child(1) {
@@ -153,4 +166,11 @@ hr {
 .topnav a.active {
     background-color: #04AA6D;
     color: white;
+}
+
+.shrink {
+    -webkit-transform: scale(0.5);
+    -moz-transform: scale(0.5);
+    -ms-transform: scale(0.5);
+    transform: scale(0.5);
 }

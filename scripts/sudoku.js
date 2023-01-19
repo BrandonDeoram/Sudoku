@@ -4,8 +4,8 @@ var tileSelected = null;
 var errors = 0;
 var board = [
     [-1, 1, -1, -1, -1, -1, -1, 9, -1],//1
-    [-1, -1, 4, -1, -1, -1, 2, 9, -1],//2
-    [-1, -1, 8, -1, -1, 5, -1, 9, -1],//3
+    [-1, -1, 4, -1, -1, -1, 2, -1, -1],//2
+    [-1, -1, 8, -1, -1, 5, -1, -1, -1],//3
     [-1, -1, -1, -1, -1, -1, -1, 3, -1],//4
     [2, -1, -1, -1, 4, -1, 1, -1, -1],//5
     [-1, -1, -1, -1, -1, -1, -1, -1, -1],//6
@@ -46,8 +46,8 @@ function setGame() {
                 tile.classList.add("vertical-line");
             }
             if (r == 8) {
-                tile.classList.add("tile2");
                 tile.addEventListener("click", selectTile);
+                tile.classList.add("tile2");
                 document.getElementById("board").append(tile);
             }
             else {
@@ -55,6 +55,9 @@ function setGame() {
                 tile.classList.add("tile");
                 document.getElementById("board").append(tile);
             }
+
+
+
 
         }
     }
@@ -77,36 +80,25 @@ function selectTile() {
         let r = parseInt(coords[0]);
         let c = parseInt(coords[1]);
 
-        console.log(board, r, c, parseInt(numSelected.id));
+        // console.log(board, r, c, parseInt(numSelected.id));
+        let value = parseInt(numSelected.id)
+        console.log(value);
 
-        if (validRow(board, r, c, parseInt(numSelected.id)) && validColumn(board, r, c, parseInt(numSelected.id)) && validBox((board, r, c, parseInt(numSelected.id)))) {
+        if (validRow(board, r, c, parseInt(numSelected.id)) && validColumn(board, r, c, parseInt(numSelected.id)) && validBox(board, r, c, value)) {
+            console.log((validColumn(board, r, c, parseInt(numSelected.id))));
+            console.log(board)
             this.innerText = numSelected.id;
+            board[r][c] = parseInt(numSelected.id);
+
         }
         else {
             errors += 1;
-            document.getElementById("errors").innerText = errors;
+            // document.getElementById("errors").innerText = errors;
             console.log("not valid")
+
         }
     }
 }
-
-
-
-// A function that returns the result for the entire sudoku board.
-function validSudoku(board) {
-    for (let i = 0; i < 9; i++) {
-        for (let j = 0; j < 9; j++) {
-            const value = board[i][j];
-            if (value !== '-1') {
-                if (!validRow(board, i, j, value) || !validColumn(board, i, j, value) | !validBox(board, i, j, value)) {
-                    return false;
-                }
-            }
-        }
-    }
-    return true;
-};
-
 //The row function.
 function validRow(board, row, col, value) {
     // j represents on column
@@ -122,10 +114,9 @@ function validRow(board, row, col, value) {
     return true;
 }
 
-// The column function.
 function validColumn(board, row, col, value) {
     // j represents on row
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < 9; i++) {
         // check if the current row matches the passed in row
         if (i !== row) {
             if (board[i][col] === value) {
@@ -139,14 +130,15 @@ function validColumn(board, row, col, value) {
 
 //The sub-boxes function.
 function validBox(board, row, col, value) {
-    const startRow = row - (row % 3), startCol = col - (col % 3);
-
-    for (let i = startRow; i < startRow + 3; i++) {
-        for (let j = startCol; j < startCol + 3; j++) {
-            if (i !== row && j !== col) {
-                if (board[i][j] === value) {
-                    return false;
-                }
+    // Get the starting row and column indices of the block
+    const blockRow = Math.floor(row / 3) * 3;
+    const blockCol = Math.floor(col / 3) * 3;
+    console.log(value);
+    // Check the current block for duplicates
+    for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++) {
+            if (board[blockRow + i][blockCol + j] === value) {
+                return false;
             }
         }
     }
