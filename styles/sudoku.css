@@ -1,54 +1,156 @@
-/* add your styling and layout CSS here */
-td {
-    font-size: 30px;
-    width: 50px;
-    height: 50px;
-    opacity: .7;
-    border: 1px solid #000;
+html,body {
+    font-family: Arial, Helvetica, sans-serif;
     text-align: center;
-}
-td:hover{
-    background-color: #fbe0a8;
-}
-td:nth-of-type(3n) {
-    border-right: 3px solid black !important;
+    margin: 0px 0px 50px 0px;
+    /* height: 100vh; */
 }
 
-tr:nth-of-type(3n) td {
-    border-bottom: 3px solid black !important;
+hr {
+    width: 500px;
 }
 
-#bottom {
-    border-right: 2px solid black !important;
-    width: 50px;
-    height: 50px;
-    opacity: .7;
-    border: 1px solid black;
-    text-align: center;
+#errors {
+    color: coral;
 }
 
-table {
-    border: 3px solid black !important;
-    border-collapse: collapse;
-}
+#board {
+    flex-shrink: 1;
+    width: 450px;
+    height: 450px;
+    border: 2px solid black;
+    border-bottom: 4px solid black;
+    border-collapse: collapse !important;
+    margin: auto;
+    margin-top: 10px;
 
-.column {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+
+}
+
+.tile {
+    width: 48px;
+    height: 48px;
+    border: .5px solid #888888;
+
+    /* Text */
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    /* min-height: 100vh; */
 }
 
-#bottomNum {
-    border: 1px solid green !important;
-    height: 50px;
-    margin-top: 50px;
-    border-collapse: collapse;
+.tile2 {
+    width: 48px;
+    height: 48px;
+    /* border-top: 1px solid lightgray; */
+    border-right: .5px solid #888888;
+    border-left: .5px solid #888888;
+
+
+    /* Text */
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.img :not(td){
-    color: #000;
+.rowDigits {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+
+
+}
+
+#digits {
+    width: 405px;
+    height: 44px;
+    border: 1px solid black;
+    display: flex;
+    /* flex-wrap: wrap; */
+}
+
+.number {
+    width: 44px;
+    height: 44px;
+    border-left: 1px solid black;
+
+    /* Text */
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.number:nth-child(1) {
+    border-left: none;
+}
+
+.number-selected {
+    background-color: gray;
+}
+
+.tile-start {
+    background-color: white;
+}
+
+.horizontal-line {
+    border-bottom: 2px solid black;
+}
+
+.vertical-line {
+    border-right: 1px solid black;
+}
+
+.undoImage {
     width: 20px;
+}
+
+.borderDiv {
+    display: flex;
+    border-collapse: collapse;
+    border-right: 1px solid black;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    height: 44px;
+    width: 44px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+
+/* Add a black background color to the top navigation */
+.topnav {
+    background-color: #333;
+    /* width: 100vh; */
+    overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+    background-color: #04AA6D;
+    color: white;
 }
