@@ -2,36 +2,32 @@
 <html lang="en">
 
 <head>
+    <!-- #include virtual="header.html" -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sudoku - Play a Game</title>
     <link rel="stylesheet" href="styles/sudoku.css">
     <script src="scripts/sudoku.js"></script>
-    <!-- reference your stylesheet here -->
-    <!-- reference your source code here -->
+
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script>
+        $(function () {
+            $("#navigation").load("navbar.html");
+        });
+    </script>
+
 </head>
 
 <body>
-    <!-- <h2 id="errors">0</h2> -->
-
-    <!-- 9x9 board -->
-    <div class="topnav">
-        <a> <img src="images/logo.gif" alt="" style="height: 20px;"></a>
-        <a href="#home">Sudoku Centre</a>
-        <a href="#home">Play Game</a>
-        <a href="#news">High Scores</a>
-
-    </div>
-
+ 
+    <div id="navigation"></div>
     <div id="board"></div>
-
-
     <br>
     <div class="rowDigits">
         <div id="digits"></div>
         <div class="borderDiv">
-            <button class="undoButton" onclick="undo()" >
+            <button class="undoButton" onclick="undo()">
                 <img src="images/undo.png" alt="" class="undoImage">
             </button>
 

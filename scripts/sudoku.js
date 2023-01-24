@@ -99,6 +99,38 @@ function selectTile() {
 
         }
         else {
+            //Figure out what cells are in the way 
+
+            board[r][c] = parseInt(numSelected.id);
+            lastNumberDict['number'] = parseInt(numSelected.id);
+            lastNumberDict['r'] = r;
+            lastNumberDict['c'] = c;
+            if (validRow(board, r, c, parseInt(numSelected.id)) == false) {
+                for (let i = 0; i < 9; i++) {
+                    document.getElementById(r + ":" + i).style.cssText = "background-color: red !important; "
+                }
+                console.log(r, c);
+
+            }
+            if (validColumn(board, r, c, parseInt(numSelected.id)) == false) {
+                for (let i = 0; i < 9; i++) {
+                    document.getElementById(i + ":" + c).style.cssText = "background-color: red !important; "
+                }
+            }
+            if (validBox(board, r, c, value) == false) {
+                let row = r;
+                let col = c;
+                const blockRow = Math.floor(row / 3) * 3;
+                const blockCol = Math.floor(col / 3) * 3;
+                console.log(blockRow, blockCol);
+                // Check the current block for duplicates
+                for (let i = 0; i < 3; i++) {
+                    for (let j = 0; j < 3; j++) {
+
+                        document.getElementById((i + blockRow) + ":" + (j + blockCol)).style.cssText = "background-color: red !important; ";
+                    }
+                }
+            }
             errors += 1;
             // document.getElementById("errors").innerText = errors;
             console.log("not valid")
@@ -120,7 +152,6 @@ function validRow(board, row, col, value) {
 
     return true;
 }
-
 function validColumn(board, row, col, value) {
     // j represents on row
     for (let i = 0; i < 9; i++) {
@@ -155,7 +186,22 @@ function validBox(board, row, col, value) {
 function undo() {
     let r = lastNumberDict['r'];
     let c = lastNumberDict['c'];
+    for (let i = 0; i < 9; i++) {
+        document.getElementById(r + ":" + i).style.cssText = "background-color: white !important; "
+    }
+    for (let i = 0; i < 9; i++) {
+        document.getElementById(i + ":" + c).style.cssText = "background-color: white !important; "
+    }
+    const blockRow = Math.floor(r / 3) * 3;
+    const blockCol = Math.floor(c / 3) * 3;
+    for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++) {
+            console.log((i + r), (j + 0));
+            document.getElementById((i + blockRow) + ":" + (j + blockCol)).style.cssText = "background-color: white !important; ";
+        }
+    }
     console.log("undo clicked");
     board[lastNumberDict['r']][lastNumberDict['c']] = -1;
-    document.getElementById(r + ":" +c).innerHTML = "";
+    document.getElementById(r + ":" + c).innerHTML = "";
+
 }
