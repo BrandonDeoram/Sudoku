@@ -96,6 +96,21 @@ function selectTile() {
             lastNumberDict['r'] = r;
             lastNumberDict['c'] = c;
 
+            for (let i = 0; i < 9; i++) {
+                document.getElementById(r + ":" + i).style.cssText = "background-color: white !important; "
+            }
+            for (let i = 0; i < 9; i++) {
+                document.getElementById(i + ":" + c).style.cssText = "background-color: white !important; "
+            }
+            const blockRow = Math.floor(r / 3) * 3;
+            const blockCol = Math.floor(c / 3) * 3;
+            for (let i = 0; i < 3; i++) {
+                for (let j = 0; j < 3; j++) {
+                    console.log((i + r), (j + 0));
+                    document.getElementById((i + blockRow) + ":" + (j + blockCol)).style.cssText = "background-color: white !important; ";
+                }
+            }
+
 
         }
         else {

@@ -3,7 +3,10 @@ body {
     font-family: Arial, Helvetica, sans-serif !important;
     text-align: center !important;
     margin: 0px 0px 50px 0px !important;
-    /* height: 100vh; */
+    overflow: hidden !important;
+    overflow-x: hidden !important;
+    height: 100vh;
+    width: 100vw;
 }
 
 *,
@@ -221,7 +224,54 @@ hr {
     border: 0px;
 }
 
-.bulma {
-    @import "bulma/sass/utilities/_all.sass"
-    @import "bulma/sass/grid/columns.sass"
+.outerContainer {
+    /* max-width: 100%; */
+    /* This can also be used */
+    width: auto;
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    /*creates that fluidity */
+    /* margin: 25px; */
+    /* background-color: #efe; */
+
+}
+
+@media (max-width:480px) {
+    #board {
+
+        transform: scale(.8);
+        margin: auto;
+    }
+
+    .outerContainer {
+        margin: 0px -40px !important;
+    }
+
+    .rowDigits {
+        transform: scale(.8);
+    }
+}
+
+#highScore {
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.flex-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+}
+
+.break {
+    width: auto;
+    background-color: black !important;
+    /* border: 1px solid black !important; */
+    display: block !important;
+    height: 1px !important;
+    margin: 8px -75px 19px -13px !important;
 }
