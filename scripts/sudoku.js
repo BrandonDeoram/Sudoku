@@ -146,8 +146,7 @@ function selectTile() {
                     }
                 }
             }
-            errors += 1;
-            // document.getElementById("errors").innerText = errors;
+
             console.log("not valid")
 
         }

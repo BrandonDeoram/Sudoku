@@ -125,7 +125,7 @@ hr {
 }
 
 .number:hover {
-    background-color: #f2f2f2 !important;
+    background-color: #f5dd90 !important;
 }
 
 .number:nth-child(1) {
@@ -133,7 +133,7 @@ hr {
 }
 
 .number-selected {
-    background-color: gray !important;
+    background-color: #f5dd90 !important;
 }
 
 .tile-start {
@@ -264,7 +264,7 @@ hr {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 500px;
+    height: 380px;
 }
 
 .break {
