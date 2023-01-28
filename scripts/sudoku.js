@@ -124,8 +124,7 @@ function selectTile() {
                 for (let i = 0; i < 9; i++) {
                     document.getElementById(r + ":" + i).style.cssText = "background-color: red !important; "
                 }
-                console.log(r, c);
-
+              
             }
             if (validColumn(board, r, c, parseInt(numSelected.id)) == false) {
                 for (let i = 0; i < 9; i++) {
